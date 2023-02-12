@@ -44,9 +44,25 @@ export const App = (elementId) => {
     // console.log(event.target);
 
     const element = event.target.closest('[data-id]');
-    console.log(element);
-    console.log(element.getAttribute('data-id'));
+    // console.log(element);
+    // console.log(element.getAttribute('data-id'));
     todoStore.toggleTodo(element.getAttribute('data-id'));
     displayTodos();
+  });
+
+  todoListUL.addEventListener('click', (event) => {
+    // console.log(event);
+    // console.log(event.target);
+    if (
+      event.target.tagName === 'BUTTON' &&
+      event.target.classList.contains('destroy')
+    ) {
+      console.log('is destroy');
+      const element = event.target.closest('[data-id]');
+      // console.log(element);
+      // console.log(element.getAttribute('data-id'));
+      todoStore.deleteTodo(element.getAttribute('data-id'));
+      displayTodos();
+    }
   });
 };
